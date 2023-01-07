@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Windows.Speech;
 
 public class DiceSystem : MonoBehaviour
 {
     public static DiceSystem instance;
 
+    [SerializeField] private PlayerPiece m_Piece; 
+    
     [SerializeField] private GameObject m_Die;
     [SerializeField] private int m_NumberOfDice = 2; //Defaults to 2
     [SerializeField] private List<Transform> m_DiceSpawnPoints;
@@ -17,7 +21,10 @@ public class DiceSystem : MonoBehaviour
 
     [SerializeField] private List<Die> dice;
 
-    [SerializeField] private float timeToWaitUntilCalculatingDice = 1; 
+    [SerializeField] private float timeToWaitUntilCalculatingDice = 1;
+
+    [SerializeField] private UnityEvent m_OnDiceFinishedRolling; 
+    
     private bool m_TestingDie = false;
     private bool m_FirstDie = false;
     private Coroutine m_DiceWait; 
@@ -89,11 +96,37 @@ public class DiceSystem : MonoBehaviour
                 options.Add(die.Calculate());
             }
 
-            foreach (int o in options)
+            if (options.Count <= 2)
             {
-                Debug.Log("Option: " + o);
+                int moves = 0; 
+                foreach (int o in options)
+                {
+                    moves += o;
+                }
+                
+                m_Piece.Move(moves);
             }
+            else
+            {
+                //There are more than two dice. The player can choose which dice to take.
+            }
+
+            m_DiceWait = StartCoroutine(WaitBeforeMovingOn());
         }
+    }
+    
+    private IEnumerator WaitBeforeMovingOn()
+    {
+        yield return new WaitForSeconds(timeToWaitUntilCalculatingDice);
+        foreach (Die die in dice)
+        {
+            Destroy(die.gameObject);
+        }
+
+        dice.Clear();
+        
+        m_OnDiceFinishedRolling.Invoke();
+        StopCoroutine(m_DiceWait);
     }
 
     private IEnumerator WaitBeforeStartingToCalculateDice()
