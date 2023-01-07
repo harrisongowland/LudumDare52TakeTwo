@@ -8,6 +8,8 @@ public class DiceSystem : MonoBehaviour
 {
     public static DiceSystem instance;
 
+    [SerializeField] private PlayerPiece m_Piece; 
+    
     [SerializeField] private GameObject m_Die;
     [SerializeField] private int m_NumberOfDice = 2; //Defaults to 2
     [SerializeField] private List<Transform> m_DiceSpawnPoints;
@@ -96,7 +98,13 @@ public class DiceSystem : MonoBehaviour
 
             if (options.Count <= 2)
             {
-                //There are only two or fewer dice available. Calculate the whole amount.
+                int moves = 0; 
+                foreach (int o in options)
+                {
+                    moves += o;
+                }
+                
+                m_Piece.Move(moves);
             }
             else
             {
@@ -114,6 +122,9 @@ public class DiceSystem : MonoBehaviour
         {
             Destroy(die.gameObject);
         }
+
+        dice.Clear();
+        
         m_OnDiceFinishedRolling.Invoke();
         StopCoroutine(m_DiceWait);
     }
