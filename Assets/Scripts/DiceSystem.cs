@@ -8,7 +8,7 @@ public class DiceSystem : MonoBehaviour
 {
     public static DiceSystem instance;
 
-    [SerializeField] private PlayerPiece m_Piece; 
+    [SerializeField] public PlayerPiece m_Piece; 
     
     [SerializeField] private GameObject m_Die;
     [SerializeField] private int m_NumberOfDice = 2; //Defaults to 2

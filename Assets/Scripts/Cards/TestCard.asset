@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
+  m_Name: TestCard
+  m_EditorClassIdentifier: 
+  CardName: Test
+  Piety: 11
+  Valour: 11
+  Love: 11
+  CardImage: {fileID: 21300000, guid: 5955491dc8dcecb4a993d9a008cf65a7, type: 3}

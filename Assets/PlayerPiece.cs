@@ -62,7 +62,8 @@ public class PlayerPiece : MonoBehaviour
                 row = 0; 
             }
         }
-        
+
+        Moving = false;
         StopCoroutine(m_Move);
     }
 }
