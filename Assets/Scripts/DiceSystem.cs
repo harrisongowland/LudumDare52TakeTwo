@@ -8,13 +8,22 @@ public class DiceSystem : MonoBehaviour
 
     [SerializeField] private GameObject m_Die;
     [SerializeField] private int m_NumberOfDice = 2; //Defaults to 2
-    [SerializeField] private List<Transform> m_DiceSpawnPoints; 
+    [SerializeField] private List<Transform> m_DiceSpawnPoints;
 
-    [SerializeField] private Vector3 m_PushDirection; 
-    [SerializeField] private float m_DiceRollForce = 100;
-    [SerializeField] private bool m_RandomiseRollForce = false;
-    [SerializeField] private float m_RandomFactor = 10; 
+    [SerializeField] public Vector3 m_PushDirection; 
+    [SerializeField] public float m_DiceRollForce = 100;
+    [SerializeField] public bool m_RandomiseRollForce = false;
+    [SerializeField] public float m_RandomFactor = 10;
 
+    [SerializeField] private List<Die> dice;
+
+    [SerializeField] private float timeToWaitUntilCalculatingDice = 1; 
+    private bool m_TestingDie = false;
+    private bool m_FirstDie = false;
+    private Coroutine m_DiceWait; 
+
+    private List<int> options; 
+    
     public void Start()
     {
         if (instance != null)
@@ -32,24 +41,65 @@ public class DiceSystem : MonoBehaviour
         int index = 0;
         List<GameObject> allDice = new List<GameObject>();
 
-        foreach (Transform t in m_DiceSpawnPoints)
+        for (int i = 0; i < m_NumberOfDice; i++)
         {
             GameObject newDie = Instantiate(m_Die) as GameObject;
-            newDie.transform.position = t.position; 
-            allDice.Add(newDie);
+            newDie.transform.position = m_DiceSpawnPoints[i].position;
         }
-        
-        //All dice placed. 
+    }
 
-        foreach (GameObject o in allDice)
+    public void AddDie(Die die)
+    {
+        dice.Add(die);
+        if (!m_FirstDie)
         {
-            //Push!
-            if (m_RandomiseRollForce)
-            {
-                o.GetComponent<Rigidbody>().AddForce(m_PushDirection * Random.Range(m_DiceRollForce - m_RandomFactor, m_DiceRollForce + m_RandomFactor));
-                return;
-            }
-            o.GetComponent<Rigidbody>().AddForce(m_PushDirection * m_DiceRollForce);
+            m_FirstDie = true;
+            m_DiceWait = StartCoroutine(WaitBeforeStartingToCalculateDice());
         }
+    }
+
+    private void Update()
+    {
+        if (!m_TestingDie)
+        {
+            return;
+        }
+
+        bool diceStopped = true;
+        
+        foreach (Die die in dice)
+        {
+            if (die.velocity != Vector3.zero)
+            {
+                //This die has stopped
+                diceStopped = false;
+                break; 
+            }
+        }
+
+        if (diceStopped)
+        {
+            m_TestingDie = false;
+            m_FirstDie = false;
+
+            //Calculate dice
+            options = new List<int>();
+            foreach (Die die in dice)
+            {
+                options.Add(die.Calculate());
+            }
+
+            foreach (int o in options)
+            {
+                Debug.Log("Option: " + o);
+            }
+        }
+    }
+
+    private IEnumerator WaitBeforeStartingToCalculateDice()
+    {
+        yield return new WaitForSeconds(timeToWaitUntilCalculatingDice);
+        m_TestingDie = true;
+        StopCoroutine(m_DiceWait);
     }
 }

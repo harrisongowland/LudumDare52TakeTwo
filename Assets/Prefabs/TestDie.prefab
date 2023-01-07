@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3287697228729960801}
   - component: {fileID: 106328449339264145}
   - component: {fileID: 6960115036688032141}
+  - component: {fileID: 4278818522236775656}
   - component: {fileID: 3069982261488440159}
   m_Layer: 0
   m_Name: TestDie
@@ -98,6 +99,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4278818522236775656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433759883203337493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5601432282f3afc4d8f72d2cd1f52ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &3069982261488440159
 Rigidbody:
   m_ObjectHideFlags: 0
