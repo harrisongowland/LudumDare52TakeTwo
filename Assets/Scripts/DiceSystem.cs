@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Windows.Speech;
 
 public class DiceSystem : MonoBehaviour
 {
@@ -17,7 +19,10 @@ public class DiceSystem : MonoBehaviour
 
     [SerializeField] private List<Die> dice;
 
-    [SerializeField] private float timeToWaitUntilCalculatingDice = 1; 
+    [SerializeField] private float timeToWaitUntilCalculatingDice = 1;
+
+    [SerializeField] private UnityEvent m_OnDiceFinishedRolling; 
+    
     private bool m_TestingDie = false;
     private bool m_FirstDie = false;
     private Coroutine m_DiceWait; 
@@ -89,11 +94,28 @@ public class DiceSystem : MonoBehaviour
                 options.Add(die.Calculate());
             }
 
-            foreach (int o in options)
+            if (options.Count <= 2)
             {
-                Debug.Log("Option: " + o);
+                //There are only two or fewer dice available. Calculate the whole amount.
             }
+            else
+            {
+                //There are more than two dice. The player can choose which dice to take.
+            }
+
+            m_DiceWait = StartCoroutine(WaitBeforeMovingOn());
         }
+    }
+    
+    private IEnumerator WaitBeforeMovingOn()
+    {
+        yield return new WaitForSeconds(timeToWaitUntilCalculatingDice);
+        foreach (Die die in dice)
+        {
+            Destroy(die.gameObject);
+        }
+        m_OnDiceFinishedRolling.Invoke();
+        StopCoroutine(m_DiceWait);
     }
 
     private IEnumerator WaitBeforeStartingToCalculateDice()

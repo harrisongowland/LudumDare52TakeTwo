@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Die : MonoBehaviour
 {
 
@@ -57,11 +58,38 @@ public class Die : MonoBehaviour
         
         //We now know which side is up. 
 
+        switch (index)
+        {
+            case 0:
+                index = 5;
+                break;
+            case 1:
+                index = 2;
+                break;
+            case 2:
+                index = 6;
+                break;
+            case 3:
+                index = 1;
+                break;
+            case 4:
+                index = 4;
+                break;
+            case 5:
+                index = 3;
+                break; 
+        }
+        
         return index; 
     }
 
     void Update()
     {
         velocity = GetComponent<Rigidbody>().velocity; 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GetComponent<AudioSource>().Play();
     }
 }
