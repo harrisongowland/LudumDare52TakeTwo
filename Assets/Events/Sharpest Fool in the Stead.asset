@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
+  m_Name: Sharpest Fool in the Stead
+  m_EditorClassIdentifier: 
+  EventName: Sharpest Fool in the Stead
+  Description: 'It''s a late night of drinking and rowdiness with your fellow crown
+    servants at one of the royal homesteads. It''s not long before the village idiot
+    Bodrick, the sneaky, conniving man he is, is at your table trying to make yet
+    another one of his hare-brained bets.
+
+
+    "Simple game this time, I promise"
+    he says, noticing the face you moke as he sits down. "All you have to do is guess
+    which one of these old farts is going to fall asleep first. Henry over there,
+    or his leathery friend Lawrence. If I win, I get something, if you win, I get
+    something back. Deal?"
+
+
+    You know Henry has been drinking since the early
+    hours of the morn - his eyes are showing signs of needing to be shut soon. I
+    wonder, is it worth your time picking him, or opting out of this game entirely?'
+  ChoiceA: Go on then, Henry is sure to be out cold soon.
+  ChoiceB: Bore off Bodrick, or you'll be cleaning the washrooms till dawn.
+  PositiveOutcomeDescription: 'Minutes feel like hours, as you both stare at Henry
+    and Lawrence, waiting for any sign that they''re about to doze off.
+
+
+    You
+    feel yourself drifting off at one point, before it catches your attention: Henry
+    is snoring.
+
+
+    Bodrick swears and curses, reluctantly handing you over some
+    coin. This will be great for buying more harvest supplies.'
+  NegativeOutcomeDescription: Before the sentence can even finish leaving your mouth,
+    you are interrupted by Lawrence's famed deafening snore. Without saying a word,
+    you place down some coins on the table and saunter home. Enough mead for one
+    night, you think.
+  CardsReceivedOnSuccess: 1
+  CardPool: []
+  AreAgentsRequired: 0
+  AgentsRequired: 0
+  chanceOfSuccess: 75
+  FailureEvent: 0
+  CardsLostOnFailure: 1

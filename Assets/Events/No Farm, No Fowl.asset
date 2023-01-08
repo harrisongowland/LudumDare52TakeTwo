@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
+  m_Name: No Farm, No Fowl
+  m_EditorClassIdentifier: 
+  EventName: No Farm, No Fowl
+  Description: 'During your daily inspections, you happen across one of the farmsteads
+    in your control. As you approach, you hear a commotion.
+
+
+    "He''s choking,
+    he''s bloody choking!" you hear someone screaming. You run towards the source
+    of the fuss, and what you see is unusual.
+
+
+    On the ground, a chicken is clearly
+    choking, while a panicked farmer shakes it. You''re fairly confident that you
+    could help out the chicken, as you experienced a similar event in your youth.'
+  ChoiceA: Turn the chicken upside down and shake it
+  ChoiceB: Leave immediately
+  PositiveOutcomeDescription: 'You shake the chicken, and after a while, it lets
+    out a loud coughing noise. From its beak shoots a small glass bead.
+
+
+    The
+    farmer flaps his arms in joy "Oh thank you sir, thank you! I don''t have much,
+    but please take the glass bead - it might be worth a pretty penny at the market".
+
+
+    You
+    take it to the market, and to your shock, it does have some value - enough for
+    one crate of apples. Not bad at all.'
+  NegativeOutcomeDescription: 'Despite your best efforts, the chicken croaks it.
+
+
+    "Ah
+    well" the farmer says, shrugging. "I''ll just get another one. Thanks anyway."'
+  CardsReceivedOnSuccess: 1
+  CardPool: []
+  AreAgentsRequired: 0
+  AgentsRequired: 0
+  chanceOfSuccess: 65
+  FailureEvent: 0
+  CardsLostOnFailure: 0

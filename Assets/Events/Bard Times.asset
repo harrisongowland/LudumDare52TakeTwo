@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
+  m_Name: Bard Times
+  m_EditorClassIdentifier: 
+  EventName: Tavern a Good Time
+  Description: 'After a long day of organizing the next harvest, you unwind at the
+    local tavern. After a few drinks, one of the locals approaches you, sloshing
+    his beer all over himself in the procees.
+
+
+    "Oi, you." he says, slurring
+    his words and jabbing a dirty finger into your chest. "I don''t like you. You
+    smell like shite and you have weird feet."'
+  ChoiceA: Offer to buy the man a drink to calm him down
+  ChoiceB: Tell him to go away
+  PositiveOutcomeDescription: 'Some hours pass, and much mead has been consumed.
+    You cannot remember why you were ever angry with this man, your new kindred spirit.
+    In the euphoria of the evening, you''ve both arranged to climb a mountain together,
+    and he''s to be the godfather of your son, should you ever have one. What was
+    his name again?
+
+
+    He also lets slip that he knows where to find some illegally
+    sourced items. In a moment of soberness you note this down, planning to return
+    the next morning to seize them for your own use.'
+  NegativeOutcomeDescription: '"What do you take me for, a charity case?" The man
+    is clearly upset with your generosity.
+
+
+    A crowd has started to form around
+    you now - probably best you leave as fast as possible. So fast in fact, you barely
+    notice the deeds to some of your coveted resources dropping from your robes.'
+  CardsReceivedOnSuccess: 2
+  CardPool: []
+  AreAgentsRequired: 0
+  AgentsRequired: 0
+  chanceOfSuccess: 95
+  FailureEvent: 0
+  CardsLostOnFailure: 1

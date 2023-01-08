@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
+  m_Name: Brawl Knight Long
+  m_EditorClassIdentifier: 
+  EventName: Brawl Knight Long
+  Description: 'You are tallying up your resources when suddenly, one of the townsfolk
+    bursts into your quarters.
+
+    "My lord!" he says, panting. "The two knights
+    stationed at the gate have begun brawling and it seems as though they mean to
+    see it through to the end. You have to send someone to stop it now!"'
+  ChoiceA: Send an agent to stop the fight
+  ChoiceB: Refuse
+  PositiveOutcomeDescription: 'Your agent successfully quells the fight, and peace
+    is restored, just for a little while.
+
+    Nonetheless, the knights must be punished
+    for the commotion they''ve caused - a donation to the harvest would serve well
+    to sweep this under the rug.'
+  NegativeOutcomeDescription: Despite their best efforts, your agent is unable to
+    bring a stop to the brawl. In doing so, they find themselves injured - bed rest
+    is on the cards for them this time.
+  CardsReceivedOnSuccess: 2
+  CardPool: []
+  AreAgentsRequired: 1
+  AgentsRequired: 1
+  chanceOfSuccess: 50
+  FailureEvent: 1
+  CardsLostOnFailure: 1
