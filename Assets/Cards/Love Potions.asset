@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Love Potions
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 1
+  Valour: 2
+  Love: 3
   CardImage: {fileID: 0}

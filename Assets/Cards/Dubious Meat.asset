@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dubious Meat
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 4
+  Valour: 5
+  Love: 5
   CardImage: {fileID: 0}

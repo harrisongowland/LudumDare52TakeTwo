@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Raunchy Tapestries
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 2
+  Valour: 1
+  Love: 3
   CardImage: {fileID: 0}

@@ -31,7 +31,11 @@ MonoBehaviour:
     bring a stop to the brawl. In doing so, they find themselves injured - bed rest
     is on the cards for them this time.
   CardsReceivedOnSuccess: 2
-  CardPool: []
+  CardPool:
+  - {fileID: 11400000, guid: a9db7f108eb84ec40b5f3406cbc3fa46, type: 2}
+  - {fileID: 11400000, guid: 123d73f1d35cf5b4fbd78732f8a3d617, type: 2}
+  - {fileID: 11400000, guid: 45641cd4cbcde2343be41e171e14ea1a, type: 2}
+  - {fileID: 11400000, guid: 4f90c4554f8ddae43a5909c211f46542, type: 2}
   AreAgentsRequired: 1
   AgentsRequired: 1
   chanceOfSuccess: 50

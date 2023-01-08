@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cruciferous Mead
   m_EditorClassIdentifier: 
   CardName: Cruciferous Mead
-  Piety: 1
-  Valour: 1
+  Piety: 2
+  Valour: 3
   Love: 1
   CardImage: {fileID: 0}

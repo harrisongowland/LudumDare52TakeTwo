@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Faithful Incense
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 6
+  Valour: 3
+  Love: 2
   CardImage: {fileID: 0}

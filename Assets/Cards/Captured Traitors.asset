@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Captured Traitors
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 3
+  Valour: 1
+  Love: 2
   CardImage: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Military Propaganda
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 4
+  Valour: 4
+  Love: 4
   CardImage: {fileID: 0}

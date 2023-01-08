@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapons Vendor
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 0
-  Valour: 0
-  Love: 0
+  Piety: 6
+  Valour: 6
+  Love: 5
   CardImage: {fileID: 0}
