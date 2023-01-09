@@ -12,38 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
   m_Name: Bard Times
   m_EditorClassIdentifier: 
-  EventName: Tavern a Good Time
-  Description: 'After a long day of organizing the next harvest, you unwind at the
-    local tavern. After a few drinks, one of the locals approaches you, sloshing
-    his beer all over himself in the procees.
+  EventName: Bard Times
+  Description: 'You are tasked with picking out a suitable bard for the King''s upcoming
+    birthday. You''ve spent your day listening to various auditions - some bad, some
+    good, some make you question why you even bother.
 
 
-    "Oi, you." he says, slurring
-    his words and jabbing a dirty finger into your chest. "I don''t like you. You
-    smell like shite and you have weird feet."'
-  ChoiceA: Offer to buy the man a drink to calm him down
-  ChoiceB: Tell him to go away
-  PositiveOutcomeDescription: 'Some hours pass, and much mead has been consumed.
-    You cannot remember why you were ever angry with this man, your new kindred spirit.
-    In the euphoria of the evening, you''ve both arranged to climb a mountain together,
-    and he''s to be the godfather of your son, should you ever have one. What was
-    his name again?
+    As the day wraps to a
+    close and you prepare to return to your quarters, a young bard rushes in. You
+    remember them as being vaguely good.
 
 
-    He also lets slip that he knows where to find some illegally
-    sourced items. In a moment of soberness you note this down, planning to return
-    the next morning to seize them for your own use.'
-  NegativeOutcomeDescription: '"What do you take me for, a charity case?" The man
-    is clearly upset with your generosity.
+    "I''m sorry, I couldn''t leave without
+    pleading that you pick me. I know that I can be the best performer"
 
 
-    A crowd has started to form around
-    you now - probably best you leave as fast as possible. So fast in fact, you barely
-    notice the deeds to some of your coveted resources dropping from your robes.'
+    You''re
+    tired, and honestly, you just want to pick someone sooner rather than later.
+    Memory fails you as to whether the King even likes music. Do you take a chance
+    on this bard?'
+  ChoiceA: Choose the bard
+  ChoiceB: Decline the bard
+  PositiveOutcomeDescription: 'You decide to take a chance on this bard - and what
+    a great idea it was!
+
+
+    The King enjoys his birthday celebration massively,
+    and notes the particularly unique flair of his music. You are handsomely rewarded
+    for providing such a joyous celebration.'
+  NegativeOutcomeDescription: 'You decide to take a chance on the bard - not your
+    finest hour.
+
+
+    The performance goes largely unnoticed and the King''s temper
+    seems to be raised. You decide to provide tribute to hopefully calm his nerves.'
   CardsReceivedOnSuccess: 2
   CardPool: []
   AreAgentsRequired: 0
   AgentsRequired: 0
-  chanceOfSuccess: 95
+  chanceOfSuccess: 65
   FailureEvent: 0
-  CardsLostOnFailure: 1
+  CardsLostOnFailure: 2

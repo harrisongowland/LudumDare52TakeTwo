@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
   m_Name: Military Propaganda
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Military Propaganda
   Piety: 0
-  Valour: 0
-  Love: 0
+  Valour: 3
+  Love: -1
   CardImage: {fileID: 0}

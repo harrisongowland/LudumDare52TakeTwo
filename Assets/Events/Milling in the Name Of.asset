@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa37ff14b22874bba12ff8520048ac, type: 3}
+  m_Name: Milling in the Name Of
+  m_EditorClassIdentifier: 
+  EventName: 
+  Description: 
+  ChoiceA: 
+  ChoiceB: 
+  PositiveOutcomeDescription: 
+  NegativeOutcomeDescription: 
+  CardsReceivedOnSuccess: 2
+  CardPool: []
+  AreAgentsRequired: 0
+  AgentsRequired: 0
+  chanceOfSuccess: 50
+  FailureEvent: 0
+  CardsLostOnFailure: 1
