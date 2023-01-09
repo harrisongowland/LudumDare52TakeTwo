@@ -322,7 +322,7 @@ public class EventHandlerSystem : MonoBehaviour
         SetPrepareCanvasVisibility(false);
         if (CurrentCardScreenMode is not CardScreenMode.REMOVE)
         {
-            UpdateHand(CurrentCardScreenMode == CardScreenMode.ADD ? 1 : CurrentCardScreenMode == CardScreenMode.TRADE ? 2 : 3);
+            UpdateHand(CurrentCardScreenMode == CardScreenMode.ADD ? 1 : CurrentCardScreenMode == CardScreenMode.TRADE ? 2 : CurrentCardScreenMode == CardScreenMode.REMOVE ? 3 : 4);
             return;
         }
 
@@ -440,10 +440,13 @@ public class EventHandlerSystem : MonoBehaviour
                 }
             }
         }
+        
+        TestCardAmount();
 
         if (!DiscardRequired)
         {
             //Continue
+            Debug.Log("Discard no longer required.");
             OnCardScreenContinue();
         }
     }

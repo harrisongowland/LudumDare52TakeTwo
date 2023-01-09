@@ -22,7 +22,7 @@ public class CardTagger : MonoBehaviour
         TAG, ADD, PLACE, REMOVE, DISCARD
     }
 
-    private CardTaggerMode mode; 
+    [SerializeField] private CardTaggerMode mode; 
     
     public void SetCard(Card _card, int _mode)
     {
