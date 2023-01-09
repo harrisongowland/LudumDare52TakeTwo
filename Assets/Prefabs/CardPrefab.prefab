@@ -261,6 +261,7 @@ MonoBehaviour:
   devotion: {fileID: 7820076266062719315}
   piety: {fileID: 4951410762027947036}
   valour: {fileID: 1918711491909309854}
+  buttonContent: {fileID: 2795435211916100107}
 --- !u!1 &2593071340058367978
 GameObject:
   m_ObjectHideFlags: 0

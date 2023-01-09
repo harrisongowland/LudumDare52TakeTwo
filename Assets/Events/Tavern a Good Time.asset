@@ -41,7 +41,9 @@ MonoBehaviour:
     you now - probably best you leave as fast as possible. So fast in fact, you barely
     notice the deeds to some of your coveted resources dropping from your robes.'
   CardsReceivedOnSuccess: 2
-  CardPool: []
+  CardPool:
+  - {fileID: 11400000, guid: 45641cd4cbcde2343be41e171e14ea1a, type: 2}
+  - {fileID: 11400000, guid: 45641cd4cbcde2343be41e171e14ea1a, type: 2}
   AreAgentsRequired: 0
   AgentsRequired: 0
   chanceOfSuccess: 95

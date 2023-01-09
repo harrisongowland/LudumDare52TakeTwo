@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class EventHandlerSystem : MonoBehaviour
@@ -10,15 +11,39 @@ public class EventHandlerSystem : MonoBehaviour
 
     public List<Card> currentCards;
     public int maxCards = 9;
+    
     public bool DiscardRequired = false;
+    public bool FinalSquareReached = false; 
+
     public List<Card> gatherableCards;
     public List<Card> taggedCards;
+    public List<Card> placedCards;
 
     private BoardEvent m_CurrentEvent;
+    public List<BoardEvent> allEvents;
+    public List<BoardEvent> playedEvents; 
 
     public int maxPersonnel = 4;
     public int availablePersonnel = 4;
     public int temporaryPersonnelPenalty = 0;
+
+    public UnityEvent OnCardScreenContinued;
+
+    //Card screen mode data
+    public enum CardScreenMode
+    {
+        ADD,
+        TRADE,
+        REMOVE,
+        DISCARD
+    }
+
+    public CardScreenMode CurrentCardScreenMode;
+
+    //Card screen UI
+    public CanvasGroup CardScreen;
+    public Transform CardScreenCardContainerA;
+    public Transform CardScreenCardContainerB;
 
     //Event UI
     public CanvasGroup EventCanvas;
@@ -31,6 +56,11 @@ public class EventHandlerSystem : MonoBehaviour
     public CanvasGroup GatherCanvas;
     public Transform CardContainer;
     public GameObject CardPrefab;
+
+    //Prepare UI
+    public CanvasGroup PrepareCanvas;
+    public GameObject CardsInHandRequired;
+    public GameObject CardsInMiddleRequired;
 
     public void Start()
     {
@@ -53,6 +83,17 @@ public class EventHandlerSystem : MonoBehaviour
         ShowEventCanvas(false);
     }
 
+    public void FullReset()
+    {
+        currentCards.Clear();
+        taggedCards.Clear();
+        placedCards.Clear(); 
+        
+        availablePersonnel = maxPersonnel;
+        temporaryPersonnelPenalty = 0; 
+        FindObjectOfType<PlayerPiece>().ReturnToStart();
+    }
+
     public void ShowEventCanvas(bool show)
     {
         EventCanvas.alpha = show ? 1 : 0;
@@ -60,8 +101,24 @@ public class EventHandlerSystem : MonoBehaviour
         EventCanvas.blocksRaycasts = show;
     }
 
+    public void DisplayEvent(bool ignorePlayedEvents)
+    {
+        BoardEvent testEvent = allEvents[Random.Range(0, allEvents.Count)];
+        if (ignorePlayedEvents && allEvents.Count != playedEvents.Count)
+        {
+            if (playedEvents.Contains(testEvent))
+            {
+                DisplayEvent(ignorePlayedEvents);
+                return;
+            }
+        }
+        DisplayEvent(testEvent);
+    }
+
     public void DisplayEvent(BoardEvent boardEvent)
     {
+        playedEvents.Add(boardEvent);
+        
         ShowEventCanvas(true);
         m_CurrentEvent = boardEvent;
 
@@ -83,11 +140,11 @@ public class EventHandlerSystem : MonoBehaviour
     {
         if (boardEvent.AreAgentsRequired)
         {
-            availablePersonnel = availablePersonnel - boardEvent.AgentsRequired;
+            availablePersonnel -= boardEvent.AgentsRequired;
         }
 
         float testSuccess = Random.Range(0, 100);
-        if (testSuccess >= boardEvent.chanceOfSuccess)
+        if (testSuccess <= boardEvent.chanceOfSuccess)
         {
             AddCards(WinEvent(boardEvent));
             return;
@@ -137,6 +194,11 @@ public class EventHandlerSystem : MonoBehaviour
             currentCards.Add(card);
         }
 
+        TestCardAmount();
+    }
+
+    public void TestCardAmount()
+    {
         if (currentCards.Count > maxCards)
         {
             Debug.Log("Player has too many cards. They must discard some.");
@@ -175,18 +237,28 @@ public class EventHandlerSystem : MonoBehaviour
         maxPersonnel += personnelChange;
     }
 
+    public void SetCanvasVisibility(CanvasGroup canvas, bool visible)
+    {
+        canvas.alpha = visible ? 1f : 0f;
+        canvas.interactable = visible;
+        canvas.blocksRaycasts = visible;
+    }
+
     public void SetGatherCanvasVisibility(bool visible)
     {
-        GatherCanvas.alpha = visible ? 1f : 0f;
-        GatherCanvas.interactable = visible;
-        GatherCanvas.blocksRaycasts = visible; 
+        SetCanvasVisibility(GatherCanvas, visible);
     }
-    
+
+    public void SetPrepareCanvasVisibility(bool visible)
+    {
+        SetCanvasVisibility(PrepareCanvas, visible);
+    }
+
     public void Gather()
     {
         taggedCards.Clear();
         SetGatherCanvasVisibility(true);
-        
+
         List<Card> gatheredCards = new List<Card>();
         for (int i = 0; i < availablePersonnel; i++)
         {
@@ -197,18 +269,28 @@ public class EventHandlerSystem : MonoBehaviour
         {
             GameObject newCardTagger = Instantiate(CardPrefab) as GameObject;
             newCardTagger.transform.SetParent(CardContainer, true);
-            
-            newCardTagger.transform.localPosition = new Vector3(newCardTagger.transform.localPosition.x,
-                newCardTagger.transform.localPosition.y, 0);
-            newCardTagger.transform.localEulerAngles = Vector3.zero;
-            newCardTagger.transform.localScale = Vector3.one; 
-            
-            newCardTagger.GetComponent<CardTagger>().SetCard(card);
+
+            NormaliseCardPrefab(newCardTagger);
+
+            newCardTagger.GetComponent<CardTagger>().SetCard(card, 0);
         }
+    }
+
+    private void NormaliseCardPrefab(GameObject _prefab)
+    {
+        _prefab.transform.localPosition = new Vector3(_prefab.transform.localPosition.x,
+            _prefab.transform.localPosition.y, 0);
+        _prefab.transform.localEulerAngles = Vector3.zero;
+        _prefab.transform.localScale = Vector3.one;
     }
 
     public void ProcessGather()
     {
+        foreach (Transform o in CardContainer)
+        {
+            Destroy(o.gameObject);
+        }
+        
         SetGatherCanvasVisibility(false);
         List<Card> addedCards = new List<Card>();
         foreach (CardTagger c in CardContainer.GetComponentsInChildren<CardTagger>())
@@ -225,5 +307,156 @@ public class EventHandlerSystem : MonoBehaviour
         }
 
         AddCards(addedCards);
+    }
+
+    public void Prepare()
+    {
+        SetPrepareCanvasVisibility(true);
+        CardsInHandRequired.SetActive(currentCards.Count != 0);
+        CardsInMiddleRequired.SetActive(placedCards.Count != 0);
+    }
+
+    public void DisplayCardScreen(bool mode)
+    {
+        SetCanvasVisibility(CardScreen, true);
+        SetPrepareCanvasVisibility(false);
+        if (CurrentCardScreenMode is not CardScreenMode.REMOVE)
+        {
+            UpdateHand(CurrentCardScreenMode == CardScreenMode.ADD ? 1 : CurrentCardScreenMode == CardScreenMode.TRADE ? 2 : 3);
+            return;
+        }
+
+        DisplayPlacedCards();
+    }
+
+    private void ClearCardScreenContainers()
+    {
+        foreach (Transform o in CardScreenCardContainerA)
+        {
+            Destroy(o.gameObject);
+        }
+
+        foreach (Transform o in CardScreenCardContainerB)
+        {
+            Destroy(o.gameObject);
+        }
+    }
+
+    private void UpdateHand(int mode)
+    {
+        ClearCardScreenContainers();
+
+        for (int i = 0; i < currentCards.Count; i++)
+        {
+            InstantiateCard(currentCards[i], i, mode);
+        }
+    }
+
+    private void DisplayPlacedCards()
+    {
+        ClearCardScreenContainers();
+
+        for (int i = 0; i < placedCards.Count; i++)
+        {
+            InstantiateCard(placedCards[i], i, 3);
+        }
+    }
+
+    private void InstantiateCard(Card _card, int index, int mode)
+    {
+        GameObject newCard =
+            Instantiate(CardPrefab, index < 4 ? CardScreenCardContainerA : CardScreenCardContainerB,
+                true) as GameObject;
+        newCard.GetComponent<CardTagger>().SetCard(_card, mode);
+        NormaliseCardPrefab(newCard);
+    }
+
+    public void PlaceCard(Card _card)
+    {
+        placedCards.Add(_card);
+        currentCards.Remove(_card);
+        OnCardScreenContinue();
+    }
+
+    public void RemoveCard(Card _card)
+    {
+        placedCards.Remove(_card);
+        OnCardScreenContinue();
+    }
+
+    public void TradeCards()
+    {
+        List<Card> tradedCards = new List<Card>();
+        tradedCards.Clear(); 
+
+        foreach (CardTagger c in CardScreenCardContainerA.GetComponentsInChildren<CardTagger>())
+        {
+            if (!c.tagged) continue;
+
+            tradedCards.Add(c.card);
+            currentCards.Remove(c.card);
+        }
+
+        foreach (CardTagger c in CardScreenCardContainerB.GetComponentsInChildren<CardTagger>())
+        {
+            if (!c.tagged) continue;
+
+            tradedCards.Add(c.card);
+            currentCards.Remove(c.card);
+        }
+
+        Debug.Log("Number of traded cards: " + tradedCards.Count);
+        
+        for (int i = 0; i < tradedCards.Count; i++)
+        {
+            currentCards.Add(gatherableCards[Random.Range(0, gatherableCards.Count)]);
+        }
+
+        OnCardScreenContinue(); 
+    }
+
+    public void DiscardCard(Card _card)
+    {
+        bool found = false; 
+        foreach (CardTagger c in CardScreenCardContainerA.GetComponentsInChildren<CardTagger>())
+        {
+            if (c.card == _card)
+            {
+                RemoveCardFromCardTagger(c);
+
+                found = true; 
+                break; 
+            }
+        }
+
+        if (!found)
+        {
+            foreach (CardTagger c in CardScreenCardContainerB.GetComponentsInChildren<CardTagger>())
+            {
+                if (c.card == _card)
+                {
+                    RemoveCardFromCardTagger(c);
+                    break; 
+                }
+            }
+        }
+
+        if (!DiscardRequired)
+        {
+            //Continue
+            OnCardScreenContinue();
+        }
+    }
+
+    private void RemoveCardFromCardTagger(CardTagger cardTagger)
+    {
+        currentCards.Remove(cardTagger.card);
+        Destroy(cardTagger.gameObject);
+        TestCardAmount();
+    }
+
+    public void OnCardScreenContinue()
+    {
+        OnCardScreenContinued.Invoke();
     }
 }

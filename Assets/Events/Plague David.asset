@@ -28,7 +28,9 @@ MonoBehaviour:
     court physicians first thought. He'll be fine in due course, but for the meantime,
     he will be unavailable for any duties.
   CardsReceivedOnSuccess: 2
-  CardPool: []
+  CardPool:
+  - {fileID: 11400000, guid: 4f90c4554f8ddae43a5909c211f46542, type: 2}
+  - {fileID: 11400000, guid: a9db7f108eb84ec40b5f3406cbc3fa46, type: 2}
   AreAgentsRequired: 0
   AgentsRequired: 0
   chanceOfSuccess: 95

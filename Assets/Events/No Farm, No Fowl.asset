@@ -45,7 +45,8 @@ MonoBehaviour:
     "Ah
     well" the farmer says, shrugging. "I''ll just get another one. Thanks anyway."'
   CardsReceivedOnSuccess: 1
-  CardPool: []
+  CardPool:
+  - {fileID: 11400000, guid: a9db7f108eb84ec40b5f3406cbc3fa46, type: 2}
   AreAgentsRequired: 0
   AgentsRequired: 0
   chanceOfSuccess: 65

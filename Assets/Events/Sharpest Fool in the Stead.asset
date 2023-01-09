@@ -13,22 +13,21 @@ MonoBehaviour:
   m_Name: Sharpest Fool in the Stead
   m_EditorClassIdentifier: 
   EventName: Sharpest Fool in the Stead
-  Description: 'It''s a late night of drinking and rowdiness with your fellow crown
-    servants at one of the royal homesteads. It''s not long before the village idiot
-    Bodrick, the sneaky, conniving man he is, is at your table trying to make yet
-    another one of his hare-brained bets.
+  Description: 'It''s a late night of rrowdiness with your fellow crown servants
+    at one of the royal homesteads. It''s not long before the village idiot Bodrick,
+    the sneaky, conniving man, is at your table trying to make yet another one of
+    his hare-brained bets.
 
 
-    "Simple game this time, I promise"
-    he says, noticing the face you moke as he sits down. "All you have to do is guess
-    which one of these old farts is going to fall asleep first. Henry over there,
-    or his leathery friend Lawrence. If I win, I get something, if you win, I get
-    something back. Deal?"
+    "Simple game this time, I promise," he says, noticing
+    the face you make as he sits down. "All you have to do is guess which one of
+    these old farts is going to fall asleep first. Henry over there, or his leathery
+    friend Lawrence. If I win, I get something, if you win, I get something back.
+    Deal?"
 
 
-    You know Henry has been drinking since the early
-    hours of the morn - his eyes are showing signs of needing to be shut soon. I
-    wonder, is it worth your time picking him, or opting out of this game entirely?'
+    You know Henry has been drinking since the early hours... is it
+    worth your time picking him, or opting out of this game entirely?'
   ChoiceA: Go on then, Henry is sure to be out cold soon.
   ChoiceB: Bore off Bodrick, or you'll be cleaning the washrooms till dawn.
   PositiveOutcomeDescription: 'Minutes feel like hours, as you both stare at Henry
@@ -47,7 +46,11 @@ MonoBehaviour:
     you place down some coins on the table and saunter home. Enough mead for one
     night, you think.
   CardsReceivedOnSuccess: 1
-  CardPool: []
+  CardPool:
+  - {fileID: 11400000, guid: 7211867ce83aca548aa9865da0fd0ee3, type: 2}
+  - {fileID: 11400000, guid: 4b522fea6354906429eed77913956294, type: 2}
+  - {fileID: 11400000, guid: 123d73f1d35cf5b4fbd78732f8a3d617, type: 2}
+  - {fileID: 11400000, guid: c7fd9f17d0faf0f4d844f5c12df32425, type: 2}
   AreAgentsRequired: 0
   AgentsRequired: 0
   chanceOfSuccess: 75
