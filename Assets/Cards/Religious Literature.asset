@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Religious Literature
   m_EditorClassIdentifier: 
   CardName: 
-  Piety: 4
-  Valour: 4
-  Love: 4
+  Piety: 1
+  Valour: 1
+  Love: -2
   CardImage: {fileID: 0}

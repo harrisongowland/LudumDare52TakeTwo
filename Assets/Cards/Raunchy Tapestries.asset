@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
   m_Name: Raunchy Tapestries
   m_EditorClassIdentifier: 
-  CardName: 
-  Piety: 2
-  Valour: 1
-  Love: 3
+  CardName: Raunchy Tapestries
+  Piety: -1
+  Valour: 0
+  Love: 2
   CardImage: {fileID: 0}

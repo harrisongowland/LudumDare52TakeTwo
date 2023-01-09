@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
   m_Name: Dubious Meat
   m_EditorClassIdentifier: 
-  CardName: 
-  Piety: 4
-  Valour: 5
-  Love: 5
+  CardName: Dubious Meat
+  Piety: -1
+  Valour: 3
+  Love: -1
   CardImage: {fileID: 0}

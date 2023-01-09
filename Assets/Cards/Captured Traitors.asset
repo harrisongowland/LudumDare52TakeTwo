@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
   m_Name: Captured Traitors
   m_EditorClassIdentifier: 
-  CardName: 
-  Piety: 3
-  Valour: 1
-  Love: 2
+  CardName: Captured Traitors
+  Piety: 0
+  Valour: 3
+  Love: 0
   CardImage: {fileID: 0}

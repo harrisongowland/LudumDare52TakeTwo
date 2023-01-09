@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcc0c5e6241d9743babff7055fe2041, type: 3}
   m_Name: Weapons Vendor
   m_EditorClassIdentifier: 
-  CardName: 
-  Piety: 6
-  Valour: 6
-  Love: 5
+  CardName: Weapons Vendor
+  Piety: 0
+  Valour: 3
+  Love: 0
   CardImage: {fileID: 0}
